@@ -37,12 +37,18 @@ RUN apt-get install -y libdbus-glib-1-2 \
 # 5. Install ffmpeg to bring in audio and video codecs necessary for playing videos in Firefox.
 RUN apt-get install -y ffmpeg
 
-# 6. Add user so we don't need --no-sandbox in Chromium
+# 6. Install Yarn
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+    apt update && \
+    apt install yarn
+
+# 7. Add user so we don't need --no-sandbox in Chromium
 RUN groupadd -r pwuser && useradd -r -g pwuser -G audio,video pwuser \
     && mkdir -p /home/pwuser/Downloads \
     && chown -R pwuser:pwuser /home/pwuser
 
-# 7. Install XVFB if there's a need to run browsers in headful mode
+# 8. Install XVFB if there's a need to run browsers in headful mode
 RUN apt-get install -y xvfb
 
 # Run everything after as non-privileged user.
