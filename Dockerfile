@@ -35,7 +35,7 @@ RUN apt-get install -y libdbus-glib-1-2 \
                        libxt6
 
 # 5. Install ffmpeg to bring in audio and video codecs necessary for playing videos in Firefox.
-RUN apt-get install -y ffmpeg
+RUN apt-get update && apt-get install -y ffmpeg
 
 # 6. Install Yarn
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
