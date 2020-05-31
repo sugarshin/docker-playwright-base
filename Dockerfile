@@ -3,6 +3,9 @@ FROM ubuntu:bionic
 
 ENV NODEJS_VERSION 12
 
+# 0. Install Git
+RUN apt-get update && apt-get install -y git
+
 # 1. Install Node.js
 RUN apt-get update && apt-get install -y curl && \
     curl -sL https://deb.nodesource.com/setup_$NODEJS_VERSION.x | bash - && \
