@@ -4,7 +4,7 @@ FROM ubuntu:bionic
 ENV NODEJS_VERSION 12
 
 # 0. Install Git
-RUN apt-get update && apt-get install -y --no-install-recommends git
+RUN apt-get update && apt-get install -y git
 
 # 1. Install Node.js
 RUN apt-get update && apt-get install -y curl && \
